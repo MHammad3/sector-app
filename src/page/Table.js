@@ -1,16 +1,21 @@
 import React from "react";
 import "../style/table.css";
 
-function Table({ users, setUsers }) {
+function Table({ users, setUsers, setUpdateUser }) {
   // Function to handle delete action
-  const handleDelete = (indexToDelete) => {
-    const updatedUsers = users.filter((_, index) => index !== indexToDelete);
+  const handleDelete = (id) => {
+    const updatedUsers = users.filter((user) => user.id !== id);
     setUsers(updatedUsers);
+  };
+
+  const handleEdit = (id) => {
+    const getUserInfo = users.find((user) => user.id === id);
+    setUpdateUser(getUserInfo);
   };
 
   return (
     <>
-      {users && users.length > 0 ? (
+      {users.length > 0 ? (
         <div className="table-container">
           <table className="custom-table">
             <thead>
@@ -33,12 +38,18 @@ function Table({ users, setUsers }) {
                   <td>{item.telephone}</td>
                   <td>{item.gender}</td>
                   <td>{item.message}</td>
-                  <td>
+                  <td className="buttons">
                     <button
                       className="button"
-                      onClick={() => handleDelete(index)} // Call handleDelete with the user's id
+                      onClick={() => handleDelete(item.id)} // Call handleDelete with the user's id
                     >
                       Delete
+                    </button>
+                    <button
+                      className="button"
+                      onClick={() => handleEdit(item.id)}
+                    >
+                      Edit
                     </button>
                   </td>
                 </tr>

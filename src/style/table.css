@@ -40,7 +40,7 @@
 /* From Uiverse.io by gharsh11032000 */
 .button {
   position: relative;
-  width: 120px;
+  width: 60px;
   height: 40px;
   background-color: #000;
   display: flex;
@@ -54,4 +54,9 @@
   border-radius: 8px;
   cursor: pointer;
   border: 2px solid yellow;
+  margin-right: 6px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
 }
